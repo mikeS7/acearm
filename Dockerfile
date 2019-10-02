@@ -1,5 +1,7 @@
 FROM  lsiobase/alpine.armhf:3.9
 
+ARG     VER
+
 RUN   apk add --no-cache curl nano git python2 py-psutil \
       && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
       && python get-pip.py \
@@ -7,7 +9,7 @@ RUN   apk add --no-cache curl nano git python2 py-psutil \
       && pip install --no-binary gevent gevent \
       && apk del --purge build-dependencies
 
-ADD   acestream_3.1.37_Py2.7.15_webUI_ARMv7.tar.gz /
+ADD   acestream_${VER}_Py2.7.16+_LinaroNDK_webUI_ARMv7.tar.gz /
 
 RUN   find /acestream.engine/androidfs/system -type d -exec chmod 755 {} \; \
       && find /acestream.engine/androidfs/system -type f -exec chmod 644 {} \; \
